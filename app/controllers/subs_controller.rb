@@ -16,7 +16,12 @@ class SubsController < ApplicationController
     @sub.mod_id = current_user.id
 
     non_empty_links = remove_nil(params[:links].values)
+    non_empty_links.each do |link|
+      link["user_id"] = @sub.mod_id
+    end
+
     @sub.links.build(non_empty_links)
+
 
     if @sub.save
       redirect_to sub_url(@sub)

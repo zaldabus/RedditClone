@@ -19,5 +19,12 @@ class LinksController < ApplicationController
     @link = Link.find(params[:id])
   end
 
+  def edit
+
+  end
+
+  def update
+
+  end
 
 end
