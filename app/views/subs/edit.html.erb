@@ -1,0 +1,33 @@
+<h1>Edit Sub</h1>
+
+<form action="<%= sub_url(@sub) %>" method="post">
+  <input type="hidden" name="_method" value="put">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <label>
+    Name
+    <input type="text" name="sub[sub_name]" value="<%= @sub.sub_name %>">
+  </label>
+
+  <h3>Links</h3>
+  <% @sub.links.each_with_index do |link, i| %>
+    <h4>Link <%= i +1 %></h4>
+    <label for="title_<%= i %>">Title</label>
+    <input type="text" name="links[<%= i %>][title]" value="<%= link.title %>" id="title_<%= i %>">
+    <br>
+    <label for="url_<%= i %>">URL</label>
+    <input type="text" name="links[<%= i %>][url]" value="<%= link.url %>" id="url_<%= i %>">
+    <br>
+    <label for="text_<%= i %>">Text (Optional)</label>
+    <br>
+    <textarea rows="6" cols="40" name="links[<%= i %>][text]" value="<%= link.text %>" id="text_<%= i %>">
+    </textarea>
+    <br>
+    <br>
+  <% end %>
+
+  <input type="submit" value="Edit this sub!">
+</form>

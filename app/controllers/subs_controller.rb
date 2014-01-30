@@ -32,11 +32,24 @@ class SubsController < ApplicationController
   end
 
   def edit
-
+    @sub = Sub.find(params[:id])
+    mod_only(@sub)
   end
 
   def update
 
+    @sub = Sub.find(params[:id])
+
+    @sub.links.each.with_index do |link, i|
+      link.update_attributes(params[:links][i.to_s])
+    end
+
+    if @sub.update_attributes(params[:sub])
+      redirect_to sub_url(@sub)
+    else
+      flash.now[:errors] = @sub.errors.full_messages
+      render :edit
+    end
   end
 
   def destroy
