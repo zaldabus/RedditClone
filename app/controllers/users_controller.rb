@@ -1,7 +1,4 @@
 class UsersController < ApplicationController
-  def index
-    @users=User.all
-  end
 
   def new
   end
@@ -10,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       session[:session_token] = @user.session_token
-      redirect_to users_url
+      redirect_to subs_url
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new

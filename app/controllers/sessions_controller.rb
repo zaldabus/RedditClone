@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
               )
     if @user
       session[:session_token] = @user.session_token
-      redirect_to users_url
+      redirect_to subs_url
     else
       flash.now[:errors] = @user.errors.full_messages
       render :new
