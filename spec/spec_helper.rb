@@ -40,6 +40,23 @@ end
 def new_user
   FactoryGirl.create(
         :user,
-        :username => "Vishal",
-        :password => "Correctpassword")
+        :username => Faker::Internet.user_name,
+        :password => "CorrectPassword")
+end
+
+def new_sub(user = new_user)
+
+  FactoryGirl.create(
+    :sub,
+    :mod_id => user.id,
+    :sub_name => "50/50")
+end
+
+def new_link(sub = new_sub)
+  FactoryGirl.create(
+  :link,
+  :title => "Babies!",
+  :url => "www.babiesrus.com",
+  :text => "meow",
+  :sub_id => sub.id)
 end

@@ -31,12 +31,24 @@ describe User do
   end
 
   it "ensures that password is not stored" do
-    new_user
-
-    expect(User.find_by_username("Vishal").password).should be_nil
+    user = new_user
+    expect(User.find_by_username(user.username).password).should be_nil
   end
 
-  # it "has a session token" do
-  #   Factor
-  # end
+  it "has a session token" do
+    user = new_user
+    expect(User.find_by_username(user.username).session_token).should_not be_nil
+  end
+
+  it "finds by credentials when User exists" do
+    user = new_user
+    expect(User.find_by_credentials(user.username, "CorrectPassword")).should eq(user)
+  end
+
+  it "resets the session_token" do
+    user = new_user
+    original_token = user.session_token
+    user.reset_session_token!
+    expect(original_token).should_not eq(user.session_token)
+  end
 end
