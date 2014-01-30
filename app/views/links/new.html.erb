@@ -1,0 +1,38 @@
+<h1>New Link</h1>
+
+<form action="<%= links_url %>" method="post">
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+
+  <label>
+    Title
+    <input type="text" name="link[title]">
+  </label>
+  <br>
+
+  <label>
+    URL
+    <input type="text" name="link[url]]">
+  </label>
+  <br>
+
+  <label>Text (Optional)</label>
+  <br>
+  <textarea rows="6" cols="40" name="link[text]" value="<%= @link.text %>" id="text">
+  </textarea>
+  <br>
+  <br>
+
+  <input type="hidden" name="link[sub_ids][]">
+  <% @subs.each do |sub| %>
+    <label for="sub<%= sub.id %>"><%= sub.sub_name %></label>
+    <input type="checkbox" name="link[sub_ids][]" value="<%= sub.id %>" id="sub<%= sub.id %>" <%= 'checked' if @link.sub_ids.include?(sub.id) %>>
+    <br>
+  <% end %>
+  <br>
+
+  <input type="submit" value="Submit new link">
+
+</form>

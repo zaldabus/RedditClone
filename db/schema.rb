@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140130200107) do
+ActiveRecord::Schema.define(:version => 20140130222018) do
 
   create_table "link_subs", :force => true do |t|
     t.integer  "link_id"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20140130200107) do
     t.text     "text"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id",    :null => false
   end
 
   create_table "subs", :force => true do |t|
