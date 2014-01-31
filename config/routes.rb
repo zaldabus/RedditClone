@@ -4,5 +4,7 @@ RedditClone::Application.routes.draw do
 
   resources :subs
 
-  resources :links
+  resources :links do
+    resources :comments, :only => [:create]
+  end
 end

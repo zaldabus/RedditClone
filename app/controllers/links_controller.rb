@@ -26,6 +26,7 @@ class LinksController < ApplicationController
 
   def update
     @link = current_user.links.find(params[:id])
+    submitted_user_only(@link)
 
     if @link.update_attributes(params[:link])
       redirect_to link_url(@link)

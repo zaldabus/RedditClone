@@ -1,0 +1,7 @@
+<% comments[child].each do |childs| %>
+  <%= childs.body %>
+  <br>
+  <% if comments.keys.include?(child) %>
+    <%= render partial: 'comment', locals: { comment: childs, comments: comments} %>
+  <% end %>
+<% end %>

@@ -9,4 +9,8 @@ class ApplicationController < ActionController::Base
   def mod_only(sub)
     redirect_to sub_url(sub) unless current_user.id == sub.mod_id
   end
+
+  def submitted_user_only(link)
+    redirect_to link_url(link) unless current_user.id == link.user_id
+  end
 end
